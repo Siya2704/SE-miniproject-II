@@ -62,29 +62,60 @@ app.get('*', (req, res) => {
     res.render('home');
     // res.send("Invalid URL :(")
 })
+
+User.find({}).then(data => console.log(data));
+app.get('*',(req,res) => {
+    res.render('home');
+
+})
 app.listen(3000, () => {
     console.log("Listening on port 3000");
 })
 
-// const seedDB = async () => {
-//     await Olx.deleteMany({});   //delete everything from database
-//     for (let i = 0; i < 50; i++) {
-//         // const random1000 = Math.floor(Math.random() * 1000);
-//         const price = Math.floor(Math.random() * 30) + 10;
-//         const p = new Olx({
-//             product_id: `${i}`,
-//             product_name: "Samsung A50",
-//             images: ['https://www.google.com/imgres?imgurl=https%3A%2F%2Fimages.samsung.com%2Fis%2Fimage%2Fsamsung%2Flatin-en-galaxy-a50-a505-sm-a505gzwjtpa-backwhite-156944251%3F%24720_576_PNG%24&imgrefurl=https%3A%2F%2Fwww.samsung.com%2Flatin_en%2Fsmartphones%2Fgalaxy-a%2Fsamsung-galaxy-a50-white-64gb-sm-a505gzwjtpa%2F&tbnid=ilMm0Kpt2SjexM&vet=12ahUKEwjbzID8xc_1AhUZ8jgGHSQlBCEQMygCegUIARDAAQ..i&docid=liDsz5pfQpujKM&w=720&h=576&itg=1&q=samsung%20a50&ved=2ahUKEwjbzID8xc_1AhUZ8jgGHSQlBCEQMygCegUIARDAAQ'],
-//             description: '6GB RAM, 64GB storage, 25mpx camera',
-//             price: price,
-//             category: "Electronic",
-//             date: Date(),
-//             owner: "1"
-//         });
-//         await p.save();
-//     }
+/*const seedDB = async () => {
+    await Olx.deleteMany({});   //delete everything from database
+    for (let i = 0; i < 50; i++) {
+        // const random1000 = Math.floor(Math.random() * 1000);
+        const price = Math.floor(Math.random() * 30) + 10;
+        const p = new Olx({
+            product_id: `${i}`,
+            product_name: "Samsung A50",
+            images: ['https://www.google.com/imgres?imgurl=https%3A%2F%2Fimages.samsung.com%2Fis%2Fimage%2Fsamsung%2Flatin-en-galaxy-a50-a505-sm-a505gzwjtpa-backwhite-156944251%3F%24720_576_PNG%24&imgrefurl=https%3A%2F%2Fwww.samsung.com%2Flatin_en%2Fsmartphones%2Fgalaxy-a%2Fsamsung-galaxy-a50-white-64gb-sm-a505gzwjtpa%2F&tbnid=ilMm0Kpt2SjexM&vet=12ahUKEwjbzID8xc_1AhUZ8jgGHSQlBCEQMygCegUIARDAAQ..i&docid=liDsz5pfQpujKM&w=720&h=576&itg=1&q=samsung%20a50&ved=2ahUKEwjbzID8xc_1AhUZ8jgGHSQlBCEQMygCegUIARDAAQ'],
+            description: '6GB RAM, 64GB storage, 25mpx camera',
+            price: price,
+            category: "Electronic",
+            date: Date(),
+            owner: "1"
+        });
+        await p.save();
+    }
 
-// }
-// seedDB().then(() => {
-//     mongoose.connection.close();
-// })
+}*/
+
+const userDB = async () => {
+    //await Olx.deleteMany({});   //delete everything from database
+    for (let i = 0; i < 50; i++) {
+       const p = new User({
+           user_id: `${i}`,
+           password: `${i}`*10,
+           user_name:"Shreya",
+           gender:"Female",
+           email:"shreya.kolkur@gmail.com",
+           address:"Adarsh Nagar",
+           phone:"7066140285",
+
+
+       })
+        await p.save();
+    }
+
+}
+
+
+/*seedDB().then(() => {
+    mongoose.connection.close();
+})*/
+
+userDB().then(()=>{
+    mongoose.connection.close();
+})
