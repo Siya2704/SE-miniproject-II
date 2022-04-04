@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <%- include('partials/header') %>
+        <title>OLX</title>
+        <style>
+            .card img {
+                width: 40%;
+            }
+
+            .card-footer {
+                width: 60%;
+            }
+
+            @media (min-width: 800px) {
+                .card img {
+                    width: 20%;
+                }
+
+                .card-footer {
+                    width: 80%;
+                }
+            }
+        </style>
+</head>
+
+<body>
+    <%- include('partials/navbar') %>
+        <h1>products</h1>
+        <%for(let p of products){%>
+            <div class="card mb-3" style="flex-direction:row;">
+                <img class="card-img" alt=" Not Found" src="<%=(p.images)[0]%>">
+                <div class="card-footer">
+                    <h5 class=" card-title">Product Name: <%=p.product_name%>
+                    </h5>
+                    <p class="card-text">Category: <%=p.category%>
+                    </p>
+                    <p class="card-text">Price: <%=p.price%>
+                    </p>
+                    <a href="/olx/<%=p._id%>" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+            <%}%>
+                <%- include('partials/footer') %>
+</body>
+
+</html>
