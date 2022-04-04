@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <%- include('partials/header') %>
+        <title>OLX</title>
+</head>
+
+<body>
+    <%- include('partials/navbar') %>
+        <br>
+        <br>
+        <div class="card bg-transparent border-dark mx-auto" style="width: 500px;margin-bottom: 70px;">
+            <img class="img-fluid" alt="Not Found" src="<%=(p.images)[0]%>" width="500px">
+            <div class="card-body  text-dark">
+                <h5 class="card-title">
+                    Product Name: <%=p.product_name%>
+                </h5>
+                <h6 class="card-text">
+                    ID: <%=p._id%>
+                </h6>
+                <h6 class="card-text">
+                    Price: <%=p.price%>
+                </h6>
+                <h6 class="card-text">
+                    Category: <%=p.category%>
+                </h6>
+                <h6 class="card-text">
+                    Description: <%=p.description%>
+                </h6>
+                <p class="text-muted">
+                    Date of Advertisement: <%=date%>
+                </p>
+                <p class="text-muted">
+                    Owner: <%=p.owner%>
+                </p>
+                <a class="btn btn-primary" href="/olx">Home</a>
+            </div>
+        </div>
+
+        <%- include('partials/footer') %>
+</body>
+
+</html>
