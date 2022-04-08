@@ -1,8 +1,7 @@
-# se_miniproject
 ## OLX Web Portal
 ### using MERN stack
 
-[Steps to run](url)
+- Steps to run
 * run npm install
 * start mongodb by running ***mongod***
 * open browser: ***http://localhost:3000/olx***
