@@ -1,44 +1,177 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
 
 <head>
     <%- include('partials/header') %>
         <title>OLX</title>
+        <style>
+            /* Basic Styling */
+            html,
+            body {
+                height: 100%;
+                width: 100%;
+                margin: 0;
+                font-family: 'Roboto', sans-serif;
+            }
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 15px;
+                display: flex;
+            }
+
+            /* Columns */
+            .left-column {
+                width: 65%;
+                position: relative;
+            }
+
+            .right-column {
+                width: 35%;
+                margin-top: 60px;
+            }
+
+            /* Left Column */
+            .left-column img {
+                width: 75%;
+                position: absolute;
+                left: 0;
+                top: 0;
+                opacity: 1;
+                transition: all 0.3s ease;
+            }
+
+            /* Product Description */
+            .product-description {
+                border-bottom: 1px solid #E1E8EE;
+                margin-bottom: 20px;
+            }
+
+            .product-description span {
+                font-size: 12px;
+                color: #358ED7;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                text-decoration: none;
+            }
+
+            .product-description h1 {
+                font-weight: 300;
+                font-size: 52px;
+                color: #43484D;
+                letter-spacing: -2px;
+            }
+
+            .product-description p {
+                font-size: 16px;
+                font-weight: 300;
+                color: #86939E;
+                line-height: 24px;
+            }
+
+            /* Product Price */
+            .product-price {
+                display: flex;
+                align-items: center;
+            }
+
+            .product-price span {
+                font-size: 26px;
+                font-weight: 300;
+                color: #43474D;
+                margin-right: 20px;
+            }
+
+            .cart-btn {
+                display: inline-block;
+                background-color: #7DC855;
+                border-radius: 6px;
+                font-size: 16px;
+                color: #FFFFFF;
+                text-decoration: none;
+                padding: 12px 30px;
+                transition: all .5s;
+            }
+
+            .cart-btn:hover {
+                background-color: #64af3d;
+            }
+        </style>
 </head>
 
 <body>
-    <%- include('partials/navbar') %>
-        <br>
-        <br>
-        <div class="card bg-transparent border-dark mx-auto" style="width: 500px;margin-bottom: 70px;">
-            <img class="img-fluid" alt="Not Found" src="<%=(p.images)[0]%>" width="500px">
-            <div class="card-body  text-dark">
-                <h5 class="card-title">
-                    Product Name: <%=p.product_name%>
-                </h5>
-                <h6 class="card-text">
-                    ID: <%=p._id%>
-                </h6>
-                <h6 class="card-text">
-                    Price: <%=p.price%>
-                </h6>
-                <h6 class="card-text">
-                    Category: <%=p.category%>
-                </h6>
-                <h6 class="card-text">
-                    Description: <%=p.description%>
-                </h6>
-                <p class="text-muted">
-                    Date of Advertisement: <%=date%>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <a class="navbar-brand" href="#">OLX</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link" href="/olx/home/<%=id%>">Home </a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        category</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <%for(let cat of categories){%>
+                            <a class="dropdown-item" href="/olx/home/<%=id%>?category=<%=cat%>">
+                                <%=cat%>
+                            </a>
+                            <%}%>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/olx/home/<%=id%>">All Products</a>
+                    </div>
+                </li>
+                <a class="nav-link" href="/olx/profile/<%=id%>">Profile</a>
+                <a class="nav-link" href="/olx/add/<%=id%>">Sell Product</a>
+            </div>
+        </div>
+    </nav>
+    <br>
+    <br>
+    <main class="container">
+
+        <div class="left-column">
+            <img src="<%=p.images%>" alt="">
+        </div>
+
+
+        <!-- Right Column -->
+        <div class="right-column">
+
+            <!-- Product Description -->
+            <div class="product-description">
+                <span>
+                    <%=p.category%>
+                </span>
+                <h1>
+                    <%=p.product_name%>
+                </h1>
+                <p>
+                    <%=p.description%>
                 </p>
+                <span>
+                    <%=date%>
+                </span>
                 <p class="text-muted">
                     Owner: <%=p.owner%>
                 </p>
-                <a class="btn btn-primary" href="/olx">Home</a>
+            </div>
+
+            <!-- Product Pricing -->
+            <div class="product-price">
+                <span>
+                    <%=p.price%>Rs
+                </span>
+                <br>
+                <!-- <span><a href="/olx/cart/<%=p._id%>/<%=id%>" class="cart-btn">Add to cart</a></span> -->
+                <br>
+                <!-- <span><a href="#" class="cart-btn">Add to cart</a></span> -->
             </div>
         </div>
-
-        <%- include('partials/footer') %>
+    </main>
+    <%- include('partials/footer') %>
 </body>
 
 </html>

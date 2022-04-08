@@ -1,0 +1,278 @@
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <%- include('partials/header') %>
+        <style>
+            body {
+                background: #eee
+            }
+
+            .card {
+                border: none;
+                position: relative;
+                overflow: hidden;
+                border-radius: 8px;
+                cursor: pointer
+            }
+
+            .card:before {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 4px;
+                height: 100%;
+                background-color: #E1BEE7;
+                transform: scaleY(1);
+                transition: all 0.5s;
+                transform-origin: bottom
+            }
+
+            .card:after {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 4px;
+                height: 100%;
+                background-color: #8E24AA;
+                transform: scaleY(0);
+                transition: all 0.5s;
+                transform-origin: bottom
+            }
+
+            .card:hover::after {
+                transform: scaleY(1)
+            }
+
+            .fonts {
+                font-size: 11px
+            }
+
+            .social-list {
+                display: flex;
+                list-style: none;
+                justify-content: center;
+                padding: 0
+            }
+
+            .social-list li {
+                padding: 10px;
+                color: #8E24AA;
+                font-size: 19px
+            }
+
+            .buttons a:nth-child(1) {
+                border: 1px solid #8E24AA !important;
+                background-color: #8E24AA;
+                color: #fff;
+                height: 40px
+            }
+
+            .buttons a:nth-child(2) {
+                border: 1px solid #8E24AA !important;
+                background-color: #8E24AA;
+                color: #fff;
+                height: 40px
+            }
+
+            .buttons a:nth-child(1):hover {
+                color: #8E24AA;
+                background-color: #fff;
+            }
+
+            .buttons a:nth-child(2):hover {
+                color: #8E24AA;
+                background-color: #fff;
+            }
+
+            .section2 .container {
+                display: flex;
+                width: 100%;
+                height: max-content;
+                flex-wrap: wrap;
+                justify-content: center;
+                margin: 10px auto;
+            }
+
+            .section2 .container .items {
+                margin: 10px;
+                width: 200px;
+                height: 400px;
+                background-color: white;
+                border: 2.5px solid black;
+                border-radius: 12px;
+            }
+
+            .section2 .container .items .name {
+                text-align: center;
+                background-color: rgb(240, 197, 6);
+                height: 25px;
+                padding-top: 4px;
+                color: white;
+                margin: 0;
+            }
+
+            .section2 .container .items .price {
+                float: left;
+                padding-left: 10px;
+                display: block;
+                width: 100%;
+                color: rgb(255, 0, 0);
+                font-weight: 650;
+            }
+
+            .section2 .container .items .info {
+                padding-left: 10px;
+                color: rgb(243, 168, 7);
+            }
+
+            .section2 .container .items .img img {
+                width: 200px;
+                height: 200px;
+                margin: 0;
+                padding: 0;
+                border-radius: 12px;
+                transition-duration: 0.8s;
+            }
+
+            .section2 .container .items .img {
+                overflow: hidden;
+                margin: 0;
+            }
+
+            .section2 .container .items:hover .img img {
+                transform: scale(1.2);
+                transition-duration: 0.8s;
+                border-radius: 12px;
+            }
+        </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <a class="navbar-brand" href="#">OLX</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link" href="/olx/home/<%=id%>">Home </a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        category</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <%for(let cat of categories){%>
+                            <a class="dropdown-item" href="/olx/home/<%=id%>?category=<%=cat%>">
+                                <%=cat%>
+                            </a>
+                            <%}%>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/olx/home/<%=id%>">All Products</a>
+                    </div>
+                </li>
+                <a class="nav-link" href="/olx/profile/<%=id%>">Profile</a>
+                <a class="nav-link" href="/olx/add/<%=id%>">Sell Product</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-7">
+                <div class="card p-3 py-4">
+                    <div class="text-center"> <img
+                            src="data:image/jpeg;base64,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"
+                            width="100" class="rounded-circle"> </div>
+                    <div class="text-center mt-3"> <button class="btn btn-outline-primary px-4">Edit
+                            Details</button>
+                        <h5 class="mt-2 mb-0">
+                            <%=p.user_name%>
+                                <div class="px-4 mt-1">
+                                    <p class="fonts">
+                                        <%=p.email%>
+                                    </p>
+                                    <p class="fonts">
+                                        <%=p.address%>
+                                    </p>
+                                    <p class="fonts">
+                                        <%=p.phone%>
+                                    </p>
+                                </div>
+                                <ul class="social-list">
+                                    <li><i class="fa fa-facebook"></i></li>
+                                    <li><i class="fa fa-dribbble"></i></li>
+                                    <li><i class="fa fa-instagram"></i></li>
+                                    <li><i class="fa fa-linkedin"></i></li>
+                                    <li><i class="fa fa-google"></i></li>
+                                </ul>
+
+                                <div class="buttons">
+                                    <a class="btn btn-outline-primary px-4" href="/olx/add/<%=id%>">Sell
+                                        Product</a>
+                                    <a class=" btn btn-outline-primary px-4" href="/olx">Logout</a>
+                                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <h2>View Cart </h2>
+    <a class=" btn btn-outline-primary px-4" href="/olx/checkout/<%=id%>">Checkout</a>
+    <br>
+    <div class="section">
+        <div class="section2">
+            <div class="container">
+                <%for(let p of arr1){%>
+                    <%if(p !=null){%>
+                        <div class="items">
+                            <div class="img img1"><img src="<%=p.images%>" alt=""></div>
+                            <div class="name">
+                                <%=p.product_name%>
+                            </div>
+                            <div class="price">
+                                <%=p.price%>
+                            </div>
+                            <div class="info">
+                                <%=p.description%>a
+                            </div>
+                            <a href="/olx/<%=p._id%>" class="btn btn-primary" style="margin:5px">View Details</a>
+                        </div>
+                        <%}%>
+                            <%}%>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+    <br><br>
+    <h2>My items</h2>
+    <div class="section">
+        <div class="section2">
+            <div class="container">
+                <%for(let p of arr2){%>
+                    <%if(p !=null){%>
+                        <div class="items">
+                            <div class="img img1"><img src="<%=p.images%>" alt=""></div>
+                            <div class="name">
+                                <%=p.product_name%>
+                            </div>
+                            <div class="price">
+                                <%=p.price%>
+                            </div>
+                            <div class="info">
+                                <%=p.description%>a
+                            </div>
+                            <a href="/olx/<%=p._id%>" class="btn btn-primary" style="margin:5px">View Details</a>
+                        </div>
+                        <%}%>
+                            <%}%>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+    <%- include('partials/footer') %>
+</body>

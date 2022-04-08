@@ -2,47 +2,141 @@
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
     <%- include('partials/header') %>
         <title>OLX</title>
         <style>
-            .card img {
-                width: 40%;
+            .section2 .container {
+                display: flex;
+                width: 100%;
+                height: max-content;
+                flex-wrap: wrap;
+                justify-content: center;
+                margin: 10px auto;
             }
 
-            .card-footer {
-                width: 60%;
+            .section2 .container .items {
+                margin: 10px;
+                width: 200px;
+                height: 400px;
+                background-color: white;
+                border: 2.5px solid black;
+                border-radius: 12px;
             }
 
-            @media (min-width: 800px) {
-                .card img {
-                    width: 20%;
-                }
+            .section2 .container .items .name {
+                text-align: center;
+                background-color: rgb(240, 197, 6);
+                height: 25px;
+                padding-top: 4px;
+                color: white;
+                margin: 0;
+            }
 
-                .card-footer {
-                    width: 80%;
-                }
+            .section2 .container .items .price {
+                float: left;
+                padding-left: 10px;
+                display: block;
+                width: 100%;
+                color: rgb(255, 0, 0);
+                font-weight: 650;
+            }
+
+            .section2 .container .items .info {
+                padding-left: 10px;
+                color: rgb(243, 168, 7);
+            }
+
+            .section2 .container .items .img img {
+                width: 200px;
+                height: 200px;
+                margin: 0;
+                padding: 0;
+                border-radius: 12px;
+                transition-duration: 0.8s;
+            }
+
+            .section2 .container .items .img {
+                overflow: hidden;
+                margin: 0;
+            }
+
+            .section2 .container .items:hover .img img {
+                transform: scale(1.2);
+                transition-duration: 0.8s;
+                border-radius: 12px;
             }
         </style>
+
 </head>
 
 <body>
-    <%- include('partials/navbar') %>
-        <h1>products</h1>
-        <%for(let p of products){%>
-            <div class="card mb-3" style="flex-direction:row;">
-                <img class="card-img" alt=" Not Found" src="<%=(p.images)[0]%>">
-                <div class="card-footer">
-                    <h5 class=" card-title">Product Name: <%=p.product_name%>
-                    </h5>
-                    <p class="card-text">Category: <%=p.category%>
-                    </p>
-                    <p class="card-text">Price: <%=p.price%>
-                    </p>
-                    <a href="/olx/<%=p._id%>" class="btn btn-primary">View Details</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <a class="navbar-brand" href="#">OLX</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link" href="/olx/home/<%=id%>">Home </a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        category</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <%for(let cat of categories){%>
+                            <%if(category !==cat){%>
+                                <a class="dropdown-item" href="/olx/home/<%=id%>?category=<%=cat%>">
+                                    <%=cat%>
+                                </a>
+                                <%}%>
+                                    <%}%>
+                                        <div class="dropdown-divider"></div>
+                                        <%if(category !=='All' ){%>
+                                            <a class="dropdown-item" href="/olx/home/<%=id%>">All Products</a>
+                                            <%}%>
+                    </div>
+                </li>
+                <a class="nav-link" href="/olx/profile/<%=id%>">Profile</a>
+                <a class="nav-link" href="/olx/add/<%=id%>">Sell Product</a>
+            </div>
+            <div class="form-inline my-2 my-lg-0">
+                <input id="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="">Search</button>
+            </div>
+        </div>
+    </nav>
+
+    <section>
+        <div class="section">
+
+            <div class="section2">
+                <div class="container">
+                    <%for(let p of products){%>
+                        <div class="items">
+                            <div class="img img1"><img src="<%=p.images%>" alt=""></div>
+                            <div class="name">
+                                <%=p.product_name%>
+                            </div>
+                            <div class="price">
+                                <%=p.price%>
+                            </div>
+                            <div class="info">
+                                <%=p.description%>a
+                            </div>
+                            <a href="/olx/<%=p._id%>" class="btn btn-primary" style="margin:5px">View Details</a>
+                            <a href="/olx/cart/<%=p._id%>/<%=id%>" class="btn btn-primary" style="margin:5px">Add to
+                                Cart</a>
+                        </div>
+                        <%}%>
                 </div>
             </div>
-            <%}%>
-                <%- include('partials/footer') %>
+        </div>
+    </section>
+
+    <%- include('partials/footer') %>
 </body>
 
 </html>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <%- include('partials/header') %>
+        <title>Register</title>
+        <style>
+            img {
+                margin-top: 20px;
+            }
+
+            form {
+                padding: 20px 20vw;
+            }
+        </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <a class="navbar-brand" href="#">OLX</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link" href="/olx/home/<%=id%>">Home </a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        category</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <%for(let cat of categories){%>
+                            <a class="dropdown-item" href="/olx/home/<%=id%>?category=<%=cat%>">
+                                <%=cat%>
+                            </a>
+                            <%}%>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/olx/home/<%=id%>">All Products</a>
+                    </div>
+                </li>
+                <a class="nav-link" href="/olx/profile/<%=id%>">Profile</a>
+                <a class="nav-link" href="/olx/add/<%=id%>">Sell Product</a>
+            </div>
+        </div>
+    </nav>
+
+    <form action="/olx/add" method="POST">
+        <div class="form-group">
+            <label for="uname">Product Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Product Name" name="name">
+        </div>
+        <div class="form-row">
+            <select class="form-select" style="height:25px" name="options">
+                <option selected>Choose Category</option>
+                <option value="Furniture">Furniture</option>
+                <option value="Property">Property</option>
+                <option value="Electronic">Electronic</option>
+                <option value="Vehicles">Vehicles</option>
+                <option value="Decorative items">Decorative items</option>
+                <option value="Books, Sports">Books, Sports</option>
+                <option value="Toys">Toys</option>
+                <option value="Fashion">Fashion</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="text" class="form-control" id="price" placeholder="Price" name="price">
+        </div>
+        <div class="form-group">
+            <label for="image">Image:</label>
+            <input type="url" id="img" name="image">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" class="form-control" id="desc" placeholder="Description" name="description"
+                style="padding-bottom: 75px;padding-top: 10px;">
+        </div>
+        <input type="hidden" id="user_id" value="<%=id%>" name="user_id">
+        <br><br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <%- include('partials/footer') %>
+</body>
+
+</html>
