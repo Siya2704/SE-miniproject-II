@@ -7,6 +7,6 @@
 * open browser: ***http://localhost:3000/olx***
 
 Made By:
-111903106 Siya Dhokane
-1119031099 Shreya Kolkur
+- 111903106 Siya Dhokane
+- 1119031099 Shreya Kolkur
 
