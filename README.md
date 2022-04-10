@@ -4,7 +4,7 @@
 - Steps to run
 * run npm install
 * start mongodb by running ***mongod***
-* run ***node index.js on cmd***
+* run ***node index.js*** on cmd
 * open browser: ***http://localhost:3000/olx***
 
 Made By:
