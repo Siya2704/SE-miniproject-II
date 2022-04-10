@@ -19,7 +19,7 @@ Made By:
 ![alt text](./screenshots/details.png)
 ![alt text](./screenshots/profile1.png)
 ![alt text](./screenshots/profile2.png)
+![alt text](./screenshots/profile3.png)
 ![alt text](./screenshots/cart.png)
 ![alt text](./screenshots/checkout1.png)
 ![alt text](./screenshots/checkout2.png)
-![alt text](./screenshots/checkout3.png)
