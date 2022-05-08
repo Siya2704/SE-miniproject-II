@@ -11,17 +11,6 @@ Made By:
 - 111903106 Siya Dhokane
 - 1119031099 Shreya Kolkur
 
-## Use Case Diagram
-
-![alt text](usecase.png)
-
-## Activity Diagram
-
-![alt text](activity.png)
-
-## Class Diagram
-
-![alt text](class.png)
 
 ## Output Screenshot
 
